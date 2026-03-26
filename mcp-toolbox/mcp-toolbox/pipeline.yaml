@@ -1,0 +1,78 @@
+version: 1
+name: rag_testcase_pipeline
+description: >
+  Pipeline for automated test case generation with RAG, compliance validation,
+  integration into ALM, and traceability logging.
+
+steps:
+  - name: upload_document
+    tool: upload_document
+    inputs:
+      file_path: "./requirements_doc.pdf"
+    outputs: [gcs_uri]
+
+  - name: ocr_text
+    tool: ocr_extraction
+    inputs:
+      gcs_uri: "{{ upload_document.gcs_uri }}"
+    outputs: [raw_text]
+
+  - name: embed_chunks
+    tool: create_embeddings
+    inputs:
+      text_chunks: "{{ split(ocr_text.raw_text, 512) }}"
+    outputs: [vectors]
+
+  - name: store_vectors
+    tool: vector_store
+    inputs:
+      vectors: "{{ embed_chunks.vectors }}"
+    outputs: [doc_id]
+
+  - name: coordinator
+    tool: coordinator_agent
+    inputs:
+      requirements_text: "{{ ocr_text.raw_text }}"
+    outputs: [tasks]
+
+  - name: retrieve_regulations
+    tool: rag_retrieval
+    inputs:
+      query: "{{ coordinator.tasks }}"
+    outputs: [retrieved_chunks]
+
+  - name: compliance_case
+    tool: compliance_validation_agent
+    inputs:
+      requirement: "{{ ocr_text.raw_text }}"
+      retrieved_chunks: "{{ retrieve_regulations.retrieved_chunks }}"
+    outputs: [compliant_test_case]
+
+  - name: create_case_in_alm
+    tool: create_testcase
+    inputs:
+      testcase_payload:
+        summary: "Auto-generated Test Case"
+        description: "{{ compliance_case.compliant_test_case }}"
+        requirement_ref: "{{ upload_document.gcs_uri }}"
+    outputs: [testcase_id]
+
+  - name: log_trace
+    tool: log_traceability
+    inputs:
+      testcase_id: "{{ create_case_in_alm.testcase_id }}"
+      regulatory_chunk_id: "{{ retrieve_regulations.retrieved_chunks }}"
+    outputs: [log_status]
+
+  - name: capture_feedback
+    tool: feedback_capture
+    inputs:
+      testcase_id: "{{ create_case_in_alm.testcase_id }}"
+      corrections: "{}"
+    outputs: [feedback_entry_id]
+
+  - name: retrain_model
+    tool: retrain_worker_model
+    inputs:
+      feedback_dataset: "gs://<your-feedback-bucket>/feedback.jsonl"
+    outputs: [model_version]

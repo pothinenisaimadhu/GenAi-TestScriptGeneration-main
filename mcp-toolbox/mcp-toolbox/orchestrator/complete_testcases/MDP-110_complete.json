@@ -1,0 +1,28 @@
+{
+  "jira_id": "MDP-110",
+  "created_at": 1757703485.3712335,
+  "created_date": "2025-09-13 00:28:05",
+  "status": "created_in_jira",
+  "summary": "Validate Data Integrity After HL7/FHIR Transformation",
+  "description": "Test that data imported from external sources and transformed using HL7/FHIR protocols remains intact and accurate.",
+  "objective": "Verify that data integrity is maintained throughout the import/export and transformation process.",
+  "prerequisites": [
+    "Data import feature is enabled",
+    "HL7/FHIR protocol configuration is set up correctly",
+    "Test data is available for import"
+  ],
+  "test_steps": [
+    "Import test data using HL7/FHIR protocol",
+    "Verify that data is transformed correctly and no errors occur during transformation",
+    "Check that original data remains intact after transformation"
+  ],
+  "expected_result": "Data integrity is maintained throughout the process, with no discrepancies or errors.",
+  "test_data": {
+    "hl7_message": "MSH|^~\\&|LITHIUM||LITHIUM|20230227000000||ADT^A01|1234567890|P|2.6||AL||",
+    "fhir_resource": "{\"resourceType\":\"Patient\",\"id\":\"12345\"}"
+  },
+  "acceptance_criteria": [
+    "No data discrepancies or errors occur during transformation",
+    "Original data remains intact after transformation"
+  ]
+}

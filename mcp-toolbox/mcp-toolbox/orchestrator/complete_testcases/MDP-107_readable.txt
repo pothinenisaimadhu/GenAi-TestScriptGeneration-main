@@ -1,0 +1,32 @@
+TEST CASE ID: MDP-107
+CREATED: 2025-09-12 23:02:14
+============================================================
+
+SUMMARY: Validate Data Integrity After ETL Process
+
+DESCRIPTION:
+This test case validates that data import/export, HL7/FHIR transformations, and integrity are maintained after the ETL process.
+
+OBJECTIVE:
+To ensure that data is accurately transformed and imported/exported without any loss of integrity.
+
+PREREQUISITES:
+1. The system must be in a stable state with all necessary configurations set.
+2. A sample dataset must be available for testing.
+
+TEST STEPS:
+1. Step 1: Prepare test data by importing a sample dataset into the system.
+2. Step 2: Perform HL7/FHIR transformations on the imported data to verify accuracy and integrity.
+3. Step 3: Export the transformed data from the system and compare it with the original dataset for any discrepancies.
+
+EXPECTED RESULTS:
+The exported data must match the original dataset, indicating that data integrity is maintained throughout the ETL process.
+
+TEST DATA:
+{'sample_dataset': [{'patient_id': '12345', 'name': 'John Doe'}, {'patient_id': '67890', 'name': 'Jane Smith'}]}
+
+ACCEPTANCE CRITERIA:
+1. Data import/export must be successful without any errors.
+2. HL7/FHIR transformations must produce accurate and consistent results.
+3. Exported data must match the original dataset with no discrepancies.
+

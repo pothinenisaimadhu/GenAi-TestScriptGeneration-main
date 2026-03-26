@@ -1,0 +1,32 @@
+TEST CASE ID: MDP-97
+CREATED: 2025-09-12 22:39:28
+============================================================
+
+SUMMARY: Patient Data Encryption and Audit Trails Test Case
+
+DESCRIPTION:
+Verify that patient data is encrypted using AES-256 and audit trails are stored for every database change.
+
+OBJECTIVE:
+Validate compliance with FDA Part 11 and ISO 9001 regulations regarding data encryption and integrity.
+
+PREREQUISITES:
+1. System must be configured to use AES-256 encryption
+2. Database must be set up to store audit trails
+
+TEST STEPS:
+1. {'step': 'Step 1: Enter patient record', 'description': 'Enter a new patient record into the system'}
+2. {'step': 'Step 2: Inspect stored data', 'description': 'Inspect the stored patient data to verify it is encrypted with AES-256'}
+3. {'step': 'Step 1: Trigger requirement-related action', 'description': 'Trigger a database change (e.g. update, delete) to test audit trail functionality'}
+4. {'step': 'Step 2: Observe system response', 'description': "Observe the system's response to verify that an audit trail is created for the database change"}
+
+EXPECTED RESULTS:
+Data is encrypted with AES-256 and an audit trail is stored for every database change.
+
+TEST DATA:
+Sample patient data (e.g. name, date of birth, medical history)
+
+ACCEPTANCE CRITERIA:
+1. System behaves as per requirement
+2. Audit trails are stored correctly for every database change
+

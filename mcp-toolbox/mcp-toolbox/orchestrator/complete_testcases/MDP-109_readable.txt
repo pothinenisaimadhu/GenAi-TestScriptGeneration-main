@@ -1,0 +1,33 @@
+TEST CASE ID: MDP-109
+CREATED: 2025-09-13 00:27:39
+============================================================
+
+SUMMARY: Audit Trail Storage Test Case
+
+DESCRIPTION:
+Verify that system stores audit trails for every database change.
+
+OBJECTIVE:
+Validate that system meets regulatory requirements by storing audit trails for all database changes.
+
+PREREQUISITES:
+1. System is configured to store audit trails
+2. Database schema is set up with necessary tables and fields
+3. Test data is prepared with sample database changes
+
+TEST STEPS:
+1. Step 1: Make a test database change (e.g. insert, update, delete record)
+2. Step 2: Verify that an audit trail entry is created for the change
+3. Step 3: Check that audit trail entry includes necessary details (e.g. user ID, timestamp, change type)
+
+EXPECTED RESULTS:
+Audit trails are stored for every database change and meet regulatory requirements.
+
+TEST DATA:
+{'user_id': 'test_user', 'change_type': ['insert', 'update', 'delete'], 'timestamp': '2023-02-20 14:30:00'}
+
+ACCEPTANCE CRITERIA:
+1. Audit trails are stored for every database change
+2. Audit trail entries include necessary details (user ID, timestamp, change type)
+3. System meets regulatory requirements (IEC 62304, ISO 13485, FDA 21 CFR Part 11)
+

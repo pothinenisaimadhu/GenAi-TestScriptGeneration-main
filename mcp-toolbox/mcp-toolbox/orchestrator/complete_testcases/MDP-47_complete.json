@@ -1,0 +1,9 @@
+{
+  "jira_id": "MDP-47",
+  "created_at": 1757676151.2639189,
+  "created_date": "2025-09-12 16:52:31",
+  "status": "created_in_jira",
+  "summary": "Auto-generated TC for: System shall encrypt patient data using AES-256....",
+  "description": "\nTest Case 1: Encryption of Patient Data using AES-256\n-----------------------------------------------\n\n### Description\nThis test case validates that the system encrypts patient data using Advanced Encryption Standard (AES) with a key size of 256 bits.\n\n### Test Steps\n\n1. Log in to the system as a patient or healthcare professional.\n2. Navigate to the patient's profile page.\n3. Verify that the patient's personal information, such as name and date of birth, is encrypted using AES-256.\n4. Check for any unencrypted data, such as medical history or treatment plans, and report them to the test team.\n5. Verify that the system can decrypt the encrypted data using the same key used during encryption.\n6. Repeat steps 1-5 for multiple patients to ensure that all patient data is encrypted correctly.\n\n### Expected Results\nThe test case expects that the system uses AES-256 to encrypt all patient data, including personal information and medical history. The test team will verify that all data is encrypted using the same key and that it can be decrypted successfully.\n\n### Test Environment\nThe test environment for this test case should include multiple patients with different levels of access to the system. It may also include a separate testing team to validate the encryption",
+  "requirement_ref": "System shall encrypt patient data using AES-256."
+}

@@ -1,0 +1,10 @@
+{
+  "id": "TC-LOCAL-1757589153-f2d7e8",
+  "created_at": 1757589153.8608866,
+  "status": "generated",
+  "priority": "medium",
+  "test_type": "automated",
+  "summary": "Auto-generated TC for: System shall store audit trails for every database change....",
+  "description": "\nTest Case #1: System stores audit trails for every database change.\n\n1. Preconditions:\n\t* The system is operational and in use.\n\t* There are users with different roles (administrators, developers, etc.) who can make changes to the database.\n2. Test:\n\t* Log in as a user with administrative privileges and modify the database by adding or updating records.\n\t* Verify that there is an audit trail for each change made to the database.\n3. Expected Results:\n\t* The system shall store audit trails for every database change, including the date and time of the change, the user who made the change, and any other relevant information.\n4. Test Case #2: System stores audit trails for every database change in accordance with regulatory requirements (e.g., FDA, ISO 13485).\n\n1. Preconditions:\n\t* The system is operational and in use.\n\t* There are users with different roles (administrators, developers, etc.) who can make changes to the database.\n2. Test:\n\t* Log in as a user with administrative privileges and modify the database by adding or updating records, following regulatory requirements.\n\t* Verify that there is an audit trail for each change made to the database, including any relevant information required under regulatory",
+  "requirement_ref": "System shall store audit trails for every database change."
+}

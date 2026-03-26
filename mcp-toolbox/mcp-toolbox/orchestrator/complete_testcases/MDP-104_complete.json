@@ -1,0 +1,33 @@
+{
+  "jira_id": "MDP-104",
+  "created_at": 1757697943.1108494,
+  "created_date": "2025-09-12 22:55:43",
+  "status": "created_in_jira",
+  "summary": "Validate Data Integrity",
+  "description": "Test that data import/export, HL7/FHIR transformations, and integrity checks are functioning correctly.",
+  "objective": "To validate that data imported or exported through HL7/FHIR transformations is accurate and consistent with the source system.",
+  "prerequisites": [
+    "Data import/export process is enabled",
+    "HL7/FHIR transformation mappings are configured correctly",
+    "Source system is available and providing accurate data"
+  ],
+  "test_steps": [
+    "Step 1: Import sample data through HL7/FHIR transformation",
+    "Step 2: Verify that imported data is accurate and consistent with source system",
+    "Step 3: Export imported data to verify integrity of export process",
+    "Step 4: Compare exported data with original source data to ensure accuracy"
+  ],
+  "expected_result": "Data import/export, HL7/FHIR transformations, and integrity checks are functioning correctly.",
+  "test_data": [
+    {
+      "source_system": "Sample Source System",
+      "hl7_fhir_mapping": "Sample HL7/FHIR Transformation Mapping",
+      "sample_data": "Sample Patient Data"
+    }
+  ],
+  "acceptance_criteria": [
+    "Data import/export process is successful without errors",
+    "HL7/FHIR transformations produce accurate and consistent results",
+    "Integrity checks detect any discrepancies or inconsistencies in data"
+  ]
+}

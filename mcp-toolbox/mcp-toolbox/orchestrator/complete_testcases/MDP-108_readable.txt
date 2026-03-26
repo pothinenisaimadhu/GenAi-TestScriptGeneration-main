@@ -1,0 +1,31 @@
+TEST CASE ID: MDP-108
+CREATED: 2025-09-13 00:27:13
+============================================================
+
+SUMMARY: AES-256 Encryption of Patient Data Test Case
+
+DESCRIPTION:
+This test case validates that patient data is encrypted using AES-256 as per the system requirements.
+
+OBJECTIVE:
+To verify that the system encrypts patient data using AES-256 encryption algorithm.
+
+PREREQUISITES:
+1. The system has been configured to use AES-256 encryption for patient data
+2. A sample patient record with sensitive information is available
+
+TEST STEPS:
+1. Step 1: Create a new patient record with sensitive information (e.g. name, address, medical history)
+2. Step 2: Encrypt the patient record using the system's AES-256 encryption algorithm
+3. Step 3: Verify that the encrypted data is stored in the system's database
+
+EXPECTED RESULTS:
+The patient data should be successfully encrypted using AES-256 and stored in the system's database.
+
+TEST DATA:
+{'patient_record': {'name': 'John Doe', 'address': '123 Main St, Anytown USA', 'medical_history': 'Diabetes, Hypertension'}}
+
+ACCEPTANCE CRITERIA:
+1. The encrypted data should be in a format that is unreadable without the decryption key
+2. The system should be able to decrypt the patient data using the same AES-256 encryption algorithm
+

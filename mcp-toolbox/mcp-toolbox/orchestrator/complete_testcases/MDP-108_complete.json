@@ -1,0 +1,30 @@
+{
+  "jira_id": "MDP-108",
+  "created_at": 1757703433.1614704,
+  "created_date": "2025-09-13 00:27:13",
+  "status": "created_in_jira",
+  "summary": "AES-256 Encryption of Patient Data Test Case",
+  "description": "This test case validates that patient data is encrypted using AES-256 as per the system requirements.",
+  "objective": "To verify that the system encrypts patient data using AES-256 encryption algorithm.",
+  "prerequisites": [
+    "The system has been configured to use AES-256 encryption for patient data",
+    "A sample patient record with sensitive information is available"
+  ],
+  "test_steps": [
+    "Step 1: Create a new patient record with sensitive information (e.g. name, address, medical history)",
+    "Step 2: Encrypt the patient record using the system's AES-256 encryption algorithm",
+    "Step 3: Verify that the encrypted data is stored in the system's database"
+  ],
+  "expected_result": "The patient data should be successfully encrypted using AES-256 and stored in the system's database.",
+  "test_data": {
+    "patient_record": {
+      "name": "John Doe",
+      "address": "123 Main St, Anytown USA",
+      "medical_history": "Diabetes, Hypertension"
+    }
+  },
+  "acceptance_criteria": [
+    "The encrypted data should be in a format that is unreadable without the decryption key",
+    "The system should be able to decrypt the patient data using the same AES-256 encryption algorithm"
+  ]
+}

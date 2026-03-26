@@ -1,0 +1,32 @@
+{
+  "jira_id": "MDP-101",
+  "created_at": 1757697700.6649818,
+  "created_date": "2025-09-12 22:51:40",
+  "status": "created_in_jira",
+  "summary": "Validate Data Integrity",
+  "description": "Verify that data import/export, HL7/FHIR transformations, and integrity checks are functioning correctly.",
+  "objective": "To ensure that data is accurately imported, transformed, and stored without any inconsistencies or errors.",
+  "prerequisites": [
+    "Data source is available and accessible",
+    "Import/Export settings are configured correctly",
+    "HL7/FHIR transformation rules are defined"
+  ],
+  "test_steps": [
+    "Step 1: Import sample data from a known good source",
+    "Step 2: Verify that the imported data is accurate and complete",
+    "Step 3: Perform HL7/FHIR transformations on the imported data",
+    "Step 4: Verify that the transformed data is correct and consistent with the original data"
+  ],
+  "expected_result": "Data import/export, HL7/FHIR transformations, and integrity checks are functioning correctly without any errors or inconsistencies.",
+  "test_data": [
+    {
+      "data_source": "Sample CSV file",
+      "import_settings": "Default import settings",
+      "hl7_fhir_rules": "Standard transformation rules"
+    }
+  ],
+  "acceptance_criteria": [
+    "Data is accurately imported and transformed without any errors or inconsistencies",
+    "Integrity checks are functioning correctly and detecting all potential issues"
+  ]
+}

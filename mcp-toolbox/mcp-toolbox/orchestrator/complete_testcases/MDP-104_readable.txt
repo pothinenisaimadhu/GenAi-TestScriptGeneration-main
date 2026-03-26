@@ -1,0 +1,34 @@
+TEST CASE ID: MDP-104
+CREATED: 2025-09-12 22:55:43
+============================================================
+
+SUMMARY: Validate Data Integrity
+
+DESCRIPTION:
+Test that data import/export, HL7/FHIR transformations, and integrity checks are functioning correctly.
+
+OBJECTIVE:
+To validate that data imported or exported through HL7/FHIR transformations is accurate and consistent with the source system.
+
+PREREQUISITES:
+1. Data import/export process is enabled
+2. HL7/FHIR transformation mappings are configured correctly
+3. Source system is available and providing accurate data
+
+TEST STEPS:
+1. Step 1: Import sample data through HL7/FHIR transformation
+2. Step 2: Verify that imported data is accurate and consistent with source system
+3. Step 3: Export imported data to verify integrity of export process
+4. Step 4: Compare exported data with original source data to ensure accuracy
+
+EXPECTED RESULTS:
+Data import/export, HL7/FHIR transformations, and integrity checks are functioning correctly.
+
+TEST DATA:
+[{'source_system': 'Sample Source System', 'hl7_fhir_mapping': 'Sample HL7/FHIR Transformation Mapping', 'sample_data': 'Sample Patient Data'}]
+
+ACCEPTANCE CRITERIA:
+1. Data import/export process is successful without errors
+2. HL7/FHIR transformations produce accurate and consistent results
+3. Integrity checks detect any discrepancies or inconsistencies in data
+

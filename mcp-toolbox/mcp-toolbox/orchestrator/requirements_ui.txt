@@ -1,0 +1,26 @@
+# UI-specific requirements for Multi-Agent RAG Test Case Generator
+streamlit>=1.28.0
+streamlit-option-menu>=0.3.6
+
+# Core dependencies (if not already installed)
+asyncio-mqtt>=0.11.0
+python-dotenv>=1.0.0
+PyMuPDF>=1.23.0
+requests>=2.31.0
+
+# AI/ML dependencies
+sentence-transformers>=2.2.2
+chromadb>=0.4.15
+
+# Google Cloud dependencies
+google-cloud-storage>=2.10.0
+google-cloud-bigquery>=3.11.4
+
+# Additional UI enhancements
+plotly>=5.17.0
+pandas>=2.1.0
+numpy>=1.24.0
+
+# Optional dependencies for enhanced functionality
+Pillow>=10.0.0
+matplotlib>=3.7.0

@@ -1,0 +1,10 @@
+{
+  "id": "MDP-28",
+  "created_at": 1757620699.5178926,
+  "status": "generated",
+  "priority": "medium",
+  "test_type": "automated",
+  "summary": "Auto-generated TC for: System shall encrypt patient data using AES-256....",
+  "description": "TEST CASE: Functional Validation - System shall encrypt patient data using AES-256.\nOBJECTIVE: Verify functional requirements are met\nSTEPS:\n1. Initialize system with required configuration\n2. Execute primary functionality: System shall encrypt patient d\n3. Validate expected behavior and outputs\n4. Verify error handling and edge cases\nEXPECTED: System performs as specified",
+  "requirement_ref": "System shall encrypt patient data using AES-256."
+}

@@ -1,0 +1,10 @@
+{
+  "id": "MDP-29",
+  "created_at": 1757620700.2749639,
+  "status": "generated",
+  "priority": "medium",
+  "test_type": "automated",
+  "summary": "Auto-generated TC for: System shall store audit trails for every database change....",
+  "description": "TEST CASE: Functional Validation - System shall store audit trails for every database\nOBJECTIVE: Verify functional requirements are met\nSTEPS:\n1. Initialize system with required configuration\n2. Execute primary functionality: System shall store audit trail\n3. Validate expected behavior and outputs\n4. Verify error handling and edge cases\nEXPECTED: System performs as specified",
+  "requirement_ref": "System shall store audit trails for every database change."
+}

@@ -1,0 +1,10 @@
+{
+  "id": "TC-LOCAL-1757589166-2d78cc",
+  "created_at": 1757589166.5221498,
+  "status": "generated",
+  "priority": "medium",
+  "test_type": "automated",
+  "summary": "Auto-generated TC for: System shall encrypt patient data using AES-256....",
+  "description": "\nTest Case Description:\n\nThis test case verifies that the system encrypts patient data using AES-256, in compliance with regulatory requirements such as 21 CFR Part 11, ISO 27001, HIPAA, GDPR, and other relevant standards. The test case covers both the encryption of electronic records and signatures, as well as the integration of bi-directional communication protocols to ensure secure data transmission and authentication.\n\nTest Case Steps:\n\n1. Verify that the system uses AES-256 for encrypting patient data at rest and in transit.\n2. Check that the system has implemented bi-directional communication protocols, such as SSL/TLS or IPsec, to ensure secure data transmission and authentication between the system and other healthcare providers.\n3. Test the encryption of electronic records using AES-256 by generating a test record and encrypting it using the system's key management process. Verify that the encrypted record is in compliance with the relevant standards, such as 21 CFR Part 11, ISO 27001, HIPAA, GDPR, and other relevant standards.\n4. Test the encryption of signatures using AES-256 by generating a test signature and encrypting it using the system's key management process. Verify that",
+  "requirement_ref": "System shall encrypt patient data using AES-256."
+}

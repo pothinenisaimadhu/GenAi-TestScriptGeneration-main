@@ -1,0 +1,59 @@
+version: 1
+name: rag_testcase_toolbox
+description: >
+  End-to-End RAG-driven Test Case Generation system integrating OCR, Vector DB, LLMs, 
+  Compliance Validation, Traceability, and Feedback Loops for QA automation.
+
+# Author / ownership info
+owner: saimadhu7110
+license: MIT
+
+# Tools definition (points to tools.yaml)
+tools:
+  source: tools.yaml
+
+# Capabilities exposed by this MCP toolbox
+capabilities:
+  - ingestion
+  - embeddings
+  - vector-search
+  - coordination
+  - compliance-validation
+  - testcase-creation
+  - traceability
+  - feedback-loop
+  - retraining
+
+# Runtime configuration
+runtime:
+  environment:
+    - GOOGLE_PROJECT_ID: "<your-gcp-project-id>"
+    - GCS_BUCKET: "<your-ingestion-bucket>"
+    - BIGQUERY_DATASET: "<your-dataset>"
+    - VECTOR_DB_URI: "<chromadb-or-faiss-endpoint>"
+    - JIRA_API_URL: "<jira-instance-url>"
+    - POLARION_API_URL: "<polarion-instance-url>"
+    - AZURE_DEVOPS_API_URL: "<azure-devops-instance-url>"
+  dependencies:
+    - gcloud
+    - tesseract-ocr
+    - apache-tika
+    - huggingface-hub
+    - chromadb
+    - vertex-ai
+    - bigquery
+    - requests
+
+# Default orchestration flow (optional)
+workflow:
+  - upload_document
+  - ocr_extraction
+  - create_embeddings
+  - vector_store
+  - coordinator_agent
+  - rag_retrieval
+  - compliance_validation_agent
+  - create_testcase
+  - log_traceability
+  - feedback_capture
+  - retrain_worker_model

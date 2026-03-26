@@ -1,0 +1,32 @@
+TEST CASE ID: MDP-110
+CREATED: 2025-09-13 00:28:05
+============================================================
+
+SUMMARY: Validate Data Integrity After HL7/FHIR Transformation
+
+DESCRIPTION:
+Test that data imported from external sources and transformed using HL7/FHIR protocols remains intact and accurate.
+
+OBJECTIVE:
+Verify that data integrity is maintained throughout the import/export and transformation process.
+
+PREREQUISITES:
+1. Data import feature is enabled
+2. HL7/FHIR protocol configuration is set up correctly
+3. Test data is available for import
+
+TEST STEPS:
+1. Import test data using HL7/FHIR protocol
+2. Verify that data is transformed correctly and no errors occur during transformation
+3. Check that original data remains intact after transformation
+
+EXPECTED RESULTS:
+Data integrity is maintained throughout the process, with no discrepancies or errors.
+
+TEST DATA:
+{'hl7_message': 'MSH|^~\\&|LITHIUM||LITHIUM|20230227000000||ADT^A01|1234567890|P|2.6||AL||', 'fhir_resource': '{"resourceType":"Patient","id":"12345"}'}
+
+ACCEPTANCE CRITERIA:
+1. No data discrepancies or errors occur during transformation
+2. Original data remains intact after transformation
+

@@ -1,0 +1,34 @@
+{
+  "jira_id": "MDP-95",
+  "created_at": 1757696883.1726172,
+  "created_date": "2025-09-12 22:38:03",
+  "status": "created_in_jira",
+  "summary": "Patient Data Encryption and Audit Trails Test Case",
+  "description": "Test case to validate that patient data is encrypted using AES-256 and audit trails are stored for every database change.",
+  "objective": "Validate that system encrypts patient data using AES-256 and stores audit trails as per requirements.",
+  "prerequisites": [
+    "System must be configured with AES-256 encryption",
+    "Database must be set up to store audit trails"
+  ],
+  "test_steps": [
+    {
+      "step_id": "Step 1: Enter patient record",
+      "description": "Enter patient data into the system"
+    },
+    {
+      "step_id": "Step 2: Inspect stored data",
+      "description": "Inspect the stored patient data to verify it is encrypted with AES-256"
+    }
+  ],
+  "expected_result": "Data is encrypted with AES-256 and audit trails are stored for every database change.",
+  "test_data": [
+    {
+      "patient_record": "Sample patient record",
+      "database_change": "Sample database change"
+    }
+  ],
+  "acceptance_criteria": [
+    "System encrypts patient data using AES-256",
+    "Audit trails are stored for every database change"
+  ]
+}

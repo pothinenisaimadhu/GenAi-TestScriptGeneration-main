@@ -1,0 +1,136 @@
+version: 1
+tools:
+  # -------------------------------
+  # Phase 1: Ingestion & Knowledge Base
+  # -------------------------------
+  - name: upload_document
+    type: gcs_upload
+    description: Uploads requirements or regulatory documents to Cloud Storage.
+    inputs:
+      - name: file_path
+        type: string
+    outputs:
+      - name: gcs_uri
+        type: string
+
+  - name: ocr_extraction
+    type: cloud_function
+    description: Extracts raw text using Tesseract OCR + Apache Tika.
+    inputs:
+      - name: gcs_uri
+        type: string
+    outputs:
+      - name: raw_text
+        type: string
+
+  - name: create_embeddings
+    type: embedding
+    description: Generates embeddings for regulatory document chunks.
+    backend: huggingface
+    inputs:
+      - name: text_chunks
+        type: list<string>
+    outputs:
+      - name: vectors
+        type: list<vector>
+
+  - name: vector_store
+    type: vector_db
+    backend: chromadb
+    description: Stores embeddings and enables semantic search.
+    inputs:
+      - name: vectors
+        type: list<vector>
+    outputs:
+      - name: doc_id
+        type: string
+
+  # -------------------------------
+  # Phase 2: Core AI Processing & RAG
+  # -------------------------------
+  - name: coordinator_agent
+    type: llm
+    backend: gemini-1.5-flash
+    description: Orchestrates request decomposition and task delegation.
+    inputs:
+      - name: requirements_text
+        type: string
+    outputs:
+      - name: tasks
+        type: list<string>
+
+  - name: compliance_validation_agent
+    type: llm
+    backend: open-source-llm
+    description: Performs RAG with regulatory context and generates compliant test cases.
+    inputs:
+      - name: requirement
+        type: string
+      - name: retrieved_chunks
+        type: list<string>
+    outputs:
+      - name: compliant_test_case
+        type: string
+
+  - name: rag_retrieval
+    type: vector_search
+    backend: chromadb
+    description: Retrieves relevant chunks from regulatory corpus.
+    inputs:
+      - name: query
+        type: string
+    outputs:
+      - name: retrieved_chunks
+        type: list<string>
+
+  # -------------------------------
+  # Phase 3: Integration & Traceability
+  # -------------------------------
+  - name: create_testcase
+    type: rest_api
+    description: Creates a new test case in Jira, Polarion, or Azure DevOps.
+    inputs:
+      - name: testcase_payload
+        type: json
+    outputs:
+      - name: testcase_id
+        type: string
+
+  - name: log_traceability
+    type: bigquery
+    description: Logs test case + regulatory chunk references for audit trail.
+    inputs:
+      - name: testcase_id
+        type: string
+      - name: regulatory_chunk_id
+        type: string
+    outputs:
+      - name: log_status
+        type: string
+
+  # -------------------------------
+  # Phase 4: Feedback Loop
+  # -------------------------------
+  - name: feedback_capture
+    type: rest_api
+    description: Captures QA engineer edits from ALM tool.
+    inputs:
+      - name: testcase_id
+        type: string
+      - name: corrections
+        type: json
+    outputs:
+      - name: feedback_entry_id
+        type: string
+
+  - name: retrain_worker_model
+    type: vertex_ai
+    description: Retrains fine-tuned worker models with feedback data.
+    inputs:
+      - name: feedback_dataset
+        type: gcs_uri
+    outputs:
+      - name: model_version
+        type: string
+
+

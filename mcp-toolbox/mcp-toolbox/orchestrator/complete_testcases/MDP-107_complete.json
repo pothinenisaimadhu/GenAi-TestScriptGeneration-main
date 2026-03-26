@@ -1,0 +1,36 @@
+{
+  "jira_id": "MDP-107",
+  "created_at": 1757698334.5362272,
+  "created_date": "2025-09-12 23:02:14",
+  "status": "created_in_jira",
+  "summary": "Validate Data Integrity After ETL Process",
+  "description": "This test case validates that data import/export, HL7/FHIR transformations, and integrity are maintained after the ETL process.",
+  "objective": "To ensure that data is accurately transformed and imported/exported without any loss of integrity.",
+  "prerequisites": [
+    "The system must be in a stable state with all necessary configurations set.",
+    "A sample dataset must be available for testing."
+  ],
+  "test_steps": [
+    "Step 1: Prepare test data by importing a sample dataset into the system.",
+    "Step 2: Perform HL7/FHIR transformations on the imported data to verify accuracy and integrity.",
+    "Step 3: Export the transformed data from the system and compare it with the original dataset for any discrepancies."
+  ],
+  "expected_result": "The exported data must match the original dataset, indicating that data integrity is maintained throughout the ETL process.",
+  "test_data": {
+    "sample_dataset": [
+      {
+        "patient_id": "12345",
+        "name": "John Doe"
+      },
+      {
+        "patient_id": "67890",
+        "name": "Jane Smith"
+      }
+    ]
+  },
+  "acceptance_criteria": [
+    "Data import/export must be successful without any errors.",
+    "HL7/FHIR transformations must produce accurate and consistent results.",
+    "Exported data must match the original dataset with no discrepancies."
+  ]
+}

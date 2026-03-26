@@ -1,0 +1,35 @@
+# Environment
+.env
+.env1
+*.env
+
+# GCP service account keys
+*.json
+!mcp-toolbox/mcp-toolbox/orchestrator/complete_testcases/*.json
+!mcp-toolbox/mcp-toolbox/orchestrator/generated_testcases/*.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+*.egg-info/
+
+# ChromaDB local data
+**/chroma/
+chroma.sqlite3
+
+# Temp files
+**/temp/
+traceability_logs/
+user_feedback/
+
+# Binary
+*.bin
+*.exe
+*.pdf
+*.docx
+*.sqlite3

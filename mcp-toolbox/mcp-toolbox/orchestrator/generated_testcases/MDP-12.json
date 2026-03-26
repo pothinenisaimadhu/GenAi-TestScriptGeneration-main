@@ -1,0 +1,10 @@
+{
+  "id": "MDP-12",
+  "created_at": 1757617423.1852548,
+  "status": "generated",
+  "priority": "medium",
+  "test_type": "automated",
+  "summary": "Auto-generated TC for: System shall encrypt patient data using AES-256....",
+  "description": "TEST CASE: AES-256 Encryption Validation\n\nOBJECTIVE: Verify patient data encryption using AES-256 algorithm\n\nPRECONDITIONS:\n- System configured with AES-256 encryption\n- Test patient data available: Name=John Doe, DOB=1990-01-01\n- Encryption keys properly generated\n\nTEST STEPS:\n1. Configure system encryption settings to use AES-256\n2. Input sample patient data and verify encryption before storage\n3. Validate encryption algorithm is AES-256 using system logs\n4. Test key rotation functionality\n5. Verify encrypted data cannot be read without proper decryption\n6. Check compliance with HIPAA encryption requirements\n\nEXPECTED RESULTS:\n- All patient data encrypted with AES-256\n- Encryption keys managed securely\n- Data unreadable without proper decryption\n- System logs show AES-256 algorithm usage\n\nVERIFICATION:\n- Check encryption algorithm in system logs\n- Validate encrypted data format matches AES-256 standard\n- Confirm key management compliance with NIST guidelines",
+  "requirement_ref": "System shall encrypt patient data using AES-256."
+}
