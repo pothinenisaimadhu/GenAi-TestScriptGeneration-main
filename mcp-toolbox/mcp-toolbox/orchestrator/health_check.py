@@ -45,12 +45,21 @@ def check_system_health() -> Dict[str, Any]:
         health_status["services"]["jira"] = "unhealthy"
         logger.warning(f"Jira health check failed: {e}")
     
-    # Check Ollama
+    # Check OpenRouter
     try:
-        response = requests.get("http://localhost:11434/api/tags", timeout=3)
-        health_status["services"]["ollama"] = "healthy" if response.status_code == 200 else "unhealthy"
-    except Exception:
-        health_status["services"]["ollama"] = "unhealthy"
+        api_key = os.getenv("OPENROUTER_API_KEY")
+        if not api_key:
+            health_status["services"]["openrouter"] = "not_configured"
+        else:
+            response = requests.get(
+                "https://openrouter.ai/api/v1/models",
+                headers={"Authorization": f"Bearer {api_key}"},
+                timeout=5
+            )
+            health_status["services"]["openrouter"] = "healthy" if response.status_code == 200 else "unhealthy"
+    except Exception as e:
+        health_status["services"]["openrouter"] = "unhealthy"
+        logger.warning(f"OpenRouter health check failed: {e}")
     
     # Check ChromaDB
     try:
