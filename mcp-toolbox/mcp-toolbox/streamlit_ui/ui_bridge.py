@@ -16,8 +16,8 @@ print(f"INFO: UI Bridge - Using orchestrator path: {orchestrator_path}")
 def run_main_with_ui_files(req_file, reg_file, intelligent_analysis=False):
     """Run main.py with uploaded files from UI"""
     
-    # Save uploaded files to temp directory
-    temp_dir = Path("temp")
+    # Save uploaded files to orchestrator's temp directory (where main.py runs)
+    temp_dir = Path(orchestrator_path) / "temp"
     temp_dir.mkdir(exist_ok=True)
     
     # Use original filenames if available
