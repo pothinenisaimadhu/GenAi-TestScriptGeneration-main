@@ -94,35 +94,35 @@ Provide a structured analysis in JSON format with these keys:
         return prompt
     
     def _call_llm_for_analysis(self, prompt: str) -> Dict[str, Any]:
-        """Call LLM for intelligent analysis"""
+        """Call LLM for intelligent analysis using OpenRouter"""
         try:
-            # Try Ollama first
-            ollama_base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
-            response = requests.get(f"{ollama_base_url}/api/tags", timeout=3)
+            api_key = os.getenv("OPENROUTER_API_KEY")
+            if not api_key:
+                raise Exception("OPENROUTER_API_KEY not set")
+            
+            model = os.getenv('OPENROUTER_MODEL', 'mistralai/mistral-7b-instruct:free')
+            
+            response = requests.post(
+                "https://openrouter.ai/api/v1/chat/completions",
+                headers={
+                    "Authorization": f"Bearer {api_key}",
+                    "Content-Type": "application/json"
+                },
+                json={
+                    "model": model,
+                    "messages": [{"role": "user", "content": prompt}],
+                    "max_tokens": 500,
+                    "temperature": 0.3
+                },
+                timeout=30
+            )
+            
             if response.status_code == 200:
-                models = response.json().get("models", [])
-                if models:
-                    model_name = models[0]["name"]
-                    
-                    llm_response = requests.post(
-                        f"{ollama_base_url}/api/generate",
-                        json={
-                            "model": model_name,
-                            "prompt": prompt,
-                            "stream": False,
-                            "options": {"temperature": 0.3, "num_predict": 500}
-                        },
-                        timeout=30
-                    )
-                    
-                    if llm_response.status_code == 200:
-                        result = llm_response.json().get("response", "")
-                        return self._parse_llm_response(result)
+                result = response.json()["choices"][0]["message"]["content"]
+                return self._parse_llm_response(result)
         
-        except (requests.RequestException, requests.Timeout, json.JSONDecodeError) as e:
-            print(f"LLM analysis failed: {e}")
         except Exception as e:
-            print(f"Unexpected error in LLM analysis: {e}")
+            print(f"OpenRouter analysis failed: {e}")
         
         # Fallback to rule-based analysis
         return self._fallback_analysis()

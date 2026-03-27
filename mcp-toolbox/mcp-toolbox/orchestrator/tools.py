@@ -814,14 +814,14 @@ def call_ai_generator(prompt: str, max_tokens: int = 300) -> str:
     except Exception as e:
         logger.warning(f"Gemini failed: {e}")
     
-    # Try Ollama second
+    # Try OpenRouter second
     try:
-        result = _call_ollama(prompt, max_tokens)
+        result = _call_openrouter(prompt, max_tokens)
         if result and len(result.strip()) > 10:
-            logger.info("Using Ollama")
+            logger.info("Using OpenRouter")
             return result
     except Exception as e:
-        logger.warning(f"Ollama failed: {e}")
+        logger.warning(f"OpenRouter failed: {e}")
     
     # Fallback to HuggingFace
     try:
@@ -865,38 +865,33 @@ def _call_gemini(prompt: str, max_tokens: int = 300) -> str:
     except Exception as e:
         raise Exception(f"Gemini API error: {e}")
 
-def _call_ollama(prompt: str, max_tokens: int = 300) -> str:
-    """Call Ollama API."""
-    try:
-        ollama_url = os.getenv('OLLAMA_URL', 'http://localhost:11434')
-        model = os.getenv('OLLAMA_MODEL', 'llama3.2')
-        
-        # Check if Ollama is running
-        health_response = requests.get(f"{ollama_url}/api/tags", timeout=5)
-        if health_response.status_code != 200:
-            raise Exception("Ollama service not available")
-        
-        
-        response = requests.post(
-            f"{ollama_url}/api/generate",
-            json={
-                "model": model,
-                "prompt": prompt,
-                "stream": False,
-                "options": {
-                    "num_predict": max_tokens,
-                    "temperature": 0.7
-                }
-            },
-            timeout=30
-        )
-        
-        if response.status_code == 200:
-            return response.json().get('response', '')
-        else:
-            raise Exception(f"Ollama API returned {response.status_code}")
-    except Exception as e:
-        raise Exception(f"Ollama API error: {e}")
+def _call_openrouter(prompt: str, max_tokens: int = 300) -> str:
+    """Call OpenRouter API as Ollama replacement."""
+    api_key = os.getenv('OPENROUTER_API_KEY')
+    if not api_key:
+        raise Exception("OPENROUTER_API_KEY not set")
+    
+    model = os.getenv('OPENROUTER_MODEL', 'mistralai/mistral-7b-instruct:free')
+    
+    response = requests.post(
+        "https://openrouter.ai/api/v1/chat/completions",
+        headers={
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json"
+        },
+        json={
+            "model": model,
+            "messages": [{"role": "user", "content": prompt}],
+            "max_tokens": max_tokens,
+            "temperature": 0.7
+        },
+        timeout=30
+    )
+    
+    if response.status_code == 200:
+        return response.json()["choices"][0]["message"]["content"]
+    else:
+        raise Exception(f"OpenRouter API returned {response.status_code}: {response.text}")
 
 def retrain_worker_model(feedback_dataset_gcs_uri: str) -> str:
     """Kicks off a retraining job by calling a generic training service API."""
