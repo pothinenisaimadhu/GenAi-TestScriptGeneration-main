@@ -45,6 +45,13 @@ def check_system_health() -> Dict[str, Any]:
         health_status["services"]["jira"] = "unhealthy"
         logger.warning(f"Jira health check failed: {e}")
     
+    # Check Ollama (local/offline)
+    try:
+        response = requests.get("http://localhost:11434/api/tags", timeout=3)
+        health_status["services"]["ollama"] = "healthy" if response.status_code == 200 else "unhealthy"
+    except Exception:
+        health_status["services"]["ollama"] = "offline (local only)"
+
     # Check OpenRouter
     try:
         api_key = os.getenv("OPENROUTER_API_KEY")
@@ -74,8 +81,8 @@ def check_system_health() -> Dict[str, Any]:
     except Exception:
         health_status["services"]["chromadb"] = "unhealthy"
     
-    # Set overall status
-    if any(status == "unhealthy" for status in health_status["services"].values()):
+    # Set overall status (ollama offline is expected in cloud)
+    if any(status == "unhealthy" for k, status in health_status["services"].items() if k != "ollama"):
         health_status["overall"] = "degraded"
     
     return health_status
